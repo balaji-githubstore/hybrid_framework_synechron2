@@ -20,6 +20,7 @@ public class LoginTest extends AutomationWrapper {
 	public void validCredentialTest(String username,String password,String language,String expectedTitle) {
 
 		LoginPage loginPage=new LoginPage(driver);
+		
 		loginPage.enterUsername( username);
 		test.log(Status.INFO, "Entered Username: "+username);
 		
