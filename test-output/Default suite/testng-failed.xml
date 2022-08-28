@@ -5,8 +5,10 @@
     <classes>
       <class name="com.synechron.test.LoginTest">
         <methods>
+          <include name="init"/>
+          <include name="validCredentialTest" invocation-numbers="0"/>
+          <include name="end"/>
           <include name="setup"/>
-          <include name="invalidCredentialTest"/>
           <include name="teardown"/>
         </methods>
       </class> <!-- com.synechron.test.LoginTest -->
