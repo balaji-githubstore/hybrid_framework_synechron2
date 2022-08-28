@@ -3,7 +3,7 @@ package com.synechron.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
+//page object with non-static
 public class LoginPage {
 
 	private By usernameLocator = By.id("authUser");
