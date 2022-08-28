@@ -19,20 +19,22 @@ public class LoginTest extends AutomationWrapper {
 	@Test(dataProviderClass = DataUtils.class,dataProvider = "commonDataProvider")
 	public void validCredentialTest(String username,String password,String language,String expectedTitle) {
 
-		LoginPage.enterUsername(driver, username);
+		LoginPage loginPage=new LoginPage(driver);
+		loginPage.enterUsername( username);
 		test.log(Status.INFO, "Entered Username: "+username);
 		
-		LoginPage.enterPassword(driver, password);
+		loginPage.enterPassword(password);
 		test.log(Status.INFO, "Entered Password: "+password);
 		
-		LoginPage.selectLanguageByText(driver, language);
+		loginPage.selectLanguageByText(language);
 		test.log(Status.INFO, "Selected Language: "+language);
 		
-		LoginPage.clickOnLogin(driver);
+		loginPage.clickOnLogin();
 		test.log(Status.INFO, "Clicked on Login");
 
+		MainPage mainPage=new MainPage(driver);
 		// wait for page load
-		String actualTitle = MainPage.getMainPageTitle(driver);
+		String actualTitle = mainPage.getMainPageTitle(driver);
 		test.log(Status.INFO, "Actual Title: "+actualTitle);
 		
 		Assert.assertEquals(actualTitle, expectedTitle);
@@ -41,12 +43,14 @@ public class LoginTest extends AutomationWrapper {
 	@Test(dataProviderClass = DataUtils.class,dataProvider = "commonDataProvider")
 	public void invalidCredentialTest(String username,String password,String language,String expectedError) {
 
-		LoginPage.enterUsername(driver, username);
-		LoginPage.enterPassword(driver, password);
-		LoginPage.selectLanguageByText(driver, language);
-		LoginPage.clickOnLogin(driver);
-
-		String actualError = LoginPage.getInvalidErrorMessage(driver);
+		LoginPage loginPage=new LoginPage(driver);
+		loginPage.enterUsername( username);
+		loginPage.enterPassword( password);
+		loginPage.selectLanguageByText( language);
+		
+		loginPage.clickOnLogin();
+		test.log(Status.INFO, "Clicked on Login");
+		String actualError = loginPage.getInvalidErrorMessage();
 		Assert.assertEquals(actualError, expectedError);
 	}
 
